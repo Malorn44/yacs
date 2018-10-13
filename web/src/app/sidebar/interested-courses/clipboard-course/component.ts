@@ -1,28 +1,31 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Course } from '../../models/course.model';
-import { Section } from '../../models/section.model';
-import { ScheduleEvent } from '../../models/schedule-event.model';
-import { Schedule } from '../../models/schedule.model';
-import { SelectionService } from '../../services/selection.service'
-import { ConflictsService } from '../../services/conflicts.service'
+import { Course } from '../../../models/course.model';
+import { Section } from '../../../models/section.model';
+import { ScheduleEvent } from '../../../models/schedule-event.model';
+import { Schedule } from '../../../models/schedule.model';
+import { SelectionService } from '../../../services/selection.service'
+import { ConflictsService } from '../../../services/conflicts.service'
 
 @Component({
-  selector: 'course',
+  selector: 'clipboard-course',
   templateUrl: './component.html',
   styleUrls: ['./component.scss'],
-  host: { '[class.selected]': 'isCourseSelected()' }
 })
-export class CourseComponent implements OnInit{
+export class ClipboardCourseComponent implements OnInit{
   @Input() course: Course;
 
   constructor(
     public selectionService : SelectionService,
     private conflictsService: ConflictsService) { }
 
-  public showingMenu;
+  public showSections;
+  public showDescription;
+  public courseSubtitle: string;
   
   ngOnInit() {
-    this.showingMenu = false;
+    this.showSections = false;
+    this.showDescription = false;
+    this.courseSubtitle = this.subjectCode() + "  |  " + this.course.num + "  |  " + this.creditRange;
   }
 
   /* A getter function for the range of credits based on the min and max.
@@ -33,7 +36,7 @@ export class CourseComponent implements OnInit{
     let outstr = '';
     let plural = true;
     if(minCredits !== maxCredits) {
-      outstr = minCredits + '-' + maxCredits + ' credits';
+      outstr = minCredits + '-' + maxCredits + 'credits';
     } else {
       outstr = maxCredits + ' credit';
       if(maxCredits !== 1) {

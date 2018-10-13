@@ -1,28 +1,33 @@
-@import "../../../_vars.scss";
+@import "../../../../_vars.scss";
 
-.course {
-  border: 2px solid $yacs_bgs;
-  border-radius: 0;
-  padding: 10px;
-  margin: 5px;
+.info-btn {
+  background: none;
+  border: none;
+  float: right;
+  margin: .3em;
 }
 
 .selection-icon {
   position: relative;
-  float: right;
-  margin: 10px;
+  float: left;
+  margin: 1em;
 }
 
 .menu {
   align: right;
   color: #cecece;
   padding: 0;
+  padding-right: 1em;
   margin: .05em;
   font-weight: 400;
   text-align: right;
 }
 
-.padded {
+.align-menu {
+  padding-top: 4em;
+}
+
+.collapsed-sections {
   padding-right: 2em;
 }
 
@@ -44,16 +49,20 @@ i {
 }
 
 .course-name {
-  font-size: 130%;
-  font-weight: 400;
+  margin-top: 10px;
+  font-size: 100%;
+  font-weight: 600;
 }
 
-.dept-code {
-  margin-left:1em;
+.course-details {
+  float: left;
+  padding-top: 2.1em;
+  color: #969696;
+  font-size: 90%;
 }
 
-.credit-range {
-  margin-left:0.7em;
+.info-button {
+  width: 100%;
 }
 
 .course-description {
@@ -66,6 +75,12 @@ i {
   margin-top: 0;
   padding-top: 0;
   padding-left: 0;
+}
+
+.course-info {
+  margin-top: 10px;
+  box-shadow: 2px 2px 5px 2px #efefef;
+  height: 7em;
 }
 
 :host:not(.selected)>.course-info:hover ~ .section-list section:not(.selected):not(.closed) {
@@ -110,4 +125,10 @@ section.selected {
 
 section.closed, section.closed:hover {
   color: #888;
+}
+
+.indicator {
+  background: $yacs_bgs;
+  height: 7em;
+  width: 1.2em;
 }
