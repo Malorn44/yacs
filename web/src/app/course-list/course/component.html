@@ -1,22 +1,29 @@
-<div class = "course" [class.highlight]="isCourseSelected()">
-	<div class="course-info" (click)="clickCourse(course)">
-		<img class = "selection-icon" (click)="clickCourse(course)" *ngIf="isCourseSelected()" src="assets/images/filled-star.svg" />
-		<img class = "selection-icon" (click)="clickCourse(course)" *ngIf="!isCourseSelected()" src="assets/images/unfilled-star.svg" />
-	  <span class="course-name">{{course.name}}</span>
-	  <span class="dept-code">{{subjectCode()}}</span> <!-- api issues, so have to grab dept code by going into sections for now -->
-	  <span class="course-number">{{course.number}}</span>
-	  <span class="credit-range">{{creditRange}}</span>
-	  <div class="course-description">
-	    {{ course.description }}
+<div class = "course" [class.fixed-height]="!showingMenu" (mouseenter)="hovered=true" (mouseleave) = "hovered=false">
+	<div class="row">
+	  <div class="indicator-container" (click)="clickCourse(course)">
+	  	<div class="indicator" [class.indicator-selected]="isCourseSelected()" [class.indicator-unselected]="!isCourseSelected()" [class.indicator-hover]="hovered"></div>
 	  </div>
-	</div>
-	<div class="menu" (click)="showingMenu = !showingMenu" >
-		<span *ngIf="!showingMenu"><span class = "padded">Choose sections</span><i class="arrow down"></i></span>
-		<span *ngIf="showingMenu"><i class="arrow up"></i></span>
-	</div>
+	  <div class="w-100 padded">
+		  <table class="full-width">
+		  	<tr (click)="clickCourse(course)">
+		    	<div class="course-name">{{course.name}}</div>
+		  	</tr>
+	  	  <tr (click)="clickCourse(course)">
+	  	  	<div class= "course-details">{{subjectCode()}}   {{course.number}}</div>
+	      </tr>
+		    <tr (click)="clickCourse(course)">
+		    	<div class="course-details">{{creditRange}}</div>
+		    </tr>
+				<tr class="menu" (click)="showingMenu = !showingMenu" >
+					<span *ngIf="!showingMenu"><span class = "padded">Choose sections</span><i class="arrow down"></i></span>
+					<span *ngIf="showingMenu"><i class="arrow up"></i></span>
+				</tr>
+			</table>
+	  </div>
+  </div>
   <div *ngIf="showingMenu">
 	  <div *ngFor="let theSection of course.sections">
 		  <section [ngClass]="{ 'selected': isSectionSelected(theSection), 'closed': theSection.seats_taken >= theSection.seats, 'conflicts': doesConflict(theSection.id) }" [section]="theSection" (click)="clickSection(theSection)"></section>
 	  </div>
-  </div>
+	</div>
 </div>

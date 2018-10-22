@@ -1,16 +1,12 @@
 @import "../../../_vars.scss";
 
 .course {
-  border: 2px solid $yacs_bgs;
-  border-radius: 0;
-  padding: 10px;
   margin: 5px;
-}
-
-.selection-icon {
-  position: relative;
-  float: right;
-  margin: 10px;
+  padding-bottom: 5px;
+  box-shadow: 2px 2px 5px 2px #efefef;
+  height: 100%;
+  min-width: 485px;
+  max-width: 950px;
 }
 
 .menu {
@@ -23,6 +19,7 @@
 }
 
 .padded {
+  padding-left: 0;
   padding-right: 2em;
 }
 
@@ -43,9 +40,20 @@ i {
   -webkit-transform: rotate(45deg);
 }
 
+.fixed-height {
+  height: 7em;
+}
+
 .course-name {
-  font-size: 130%;
-  font-weight: 400;
+  margin-top: 10px;
+  font-size: 100%;
+  font-weight: 600;
+}
+
+.course-details {
+  float: left;
+  color: #969696;
+  font-size: 90%;
 }
 
 .dept-code {
@@ -68,25 +76,13 @@ i {
   padding-left: 0;
 }
 
-:host:not(.selected)>.course-info:hover ~ .section-list section:not(.selected):not(.closed) {
-  background-color: #d57f7f;
-}
-
-:host.selected>.course-info:hover ~ .section-list section.selected {
-  color: #efefef;
-  background-color: #d57f7f;
-}
-
 section {
   display:block;
-  margin:0px 0px 0px 5px;
-  padding:4px 4px 4px 8px;
+  margin:0;
+  padding:0;
   overflow:auto;
   font-size: 90%;
-}
-
-section:not(.selected):hover {
-  background-color: $yacs_acc;
+  width: 100%;
 }
 
 section:not(.selected) {
@@ -94,20 +90,41 @@ section:not(.selected) {
   color: black;
 }
 
-section.selected:hover {
-  color: #efefef;
-  background-color: $yacs_acc;
-}
-
 section.conflicts, section.conflicts:hover {
   color: #aaa;
 }
 
-section.selected {
-  color: #efefef;
-  background-color: $yacs_bgs;
-}
-
 section.closed, section.closed:hover {
   color: #888;
+}
+
+.indicator {
+  height: 7em;
+  width: 1.2em;
+}
+
+.indicator-selected {
+  background: $yacs_bgs;
+}
+
+.indicator-unselected {
+  background: #efefef;
+}
+
+.indicator-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.indicator-hover {
+  background: $yacs_acc;
+}
+
+.zero-margins {
+  padding:0 !important;
+  margin:0 !important;
+}
+
+.full-width {
+  width: 100%;
 }

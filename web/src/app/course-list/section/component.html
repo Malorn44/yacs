@@ -1,21 +1,34 @@
-<span class="section-information">
-  <span class="section-name">{{section.name}}</span>
-  <span class="section-crn">{{section.crn}}</span>
-  <span class="section-instructors">{{ section.instructors.join(', ') }}</span>
-  <span class="section-seats-available">
-    {{ section.seats-section.seats_taken }}<span class="section-seats">/{{ section.seats }} seats</span>
-  </span>
-</span>
-<div *ngIf="doesConflict(section?.id)" class="conflict-note">
-  <span class="conflict-img-center"></span>
-  <img class="conflict-img" src="assets/images/red_exclamation.svg" />
-  <span class="conflict-text">
-    Conflicts with selected sections
-  </span>
-</div>
-<div class="section-periods">
-  <span class="period" *ngFor="let period of section.periods">
-    <span class="period-day">{{ getDay(period) }}</span>
-    <span class="period-time">{{ getHours(period) }}</span>
-  </span>
+<div class = "full-width">
+  <div class = "row w-100">
+    <div class="col-1 align-center section-name"><div class="highlight" [class.highlight-selected]="isSelected()">{{section.name}}</div></div>
+    <div class="col-2 align-center section-details">
+      <div>
+        <span *ngIf="doesConflict(section.id)" placement="top" triggers="mouseenter:mouseleave" title="Section Conflicts"><img class="conflict-img" src="assets/images/red_exclamation.svg" /></span>
+        <span class="section-crn">{{section.crn}}</span>
+        <span class="section-instructors">{{ section.instructors.join(', ') }}</span>
+        <span class="section-seats">
+          {{ section.seats-section.seats_taken }}
+          <span>/{{ section.seats }} seats</span>
+        </span>
+      </div>
+    </div>
+    <div class ="col-9">
+      <table class = "section-periods">
+        <span>
+          <tr *ngFor="let week of periods">
+            <span *ngFor="let period of week; let i = index">
+              <td class = "period-time">
+                <div class = "col-12">
+                  <div class="row" [class.grey]="i%2==0">
+                    <span *ngIf="period">{{ getHours(period) }}</span>
+                    <span *ngIf="!period">&nbsp;</span>
+                  </div>
+                </div>
+              </td>
+            </span>
+          </tr>
+        </span>
+      </table>
+    </div>  
+  </div>
 </div>
