@@ -1,5 +1,11 @@
 @import "../../../_vars.scss";
 
+// @media (max-width: 575.98px) {
+//     section {
+//         flrx-wrap:
+//     }
+// }
+
 :host.conflicts>.section-information {
     text-decoration: line-through;
 }
@@ -23,6 +29,7 @@
     margin-left:0em;
     float:right;
     height:100%;
+    white-space: nowrap;
 }
 
 .section-seats {
@@ -36,6 +43,7 @@
 .period-day {
     font-weight: 400;
 }
+
 div.conflict-note {
     margin-left:0.4em;
     display:inline;
@@ -60,9 +68,12 @@ span.conflict-text {
 }
 
 .highlight {
-    height:1.3em;
     width: 1.3em;
     background: #efefef;
+    width: 19.19px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 2px;
 }
 
 .highlight:hover {
@@ -72,6 +83,9 @@ span.conflict-text {
 .highlight-selected {
     background: $yacs_bgs;
     color: white;
+    width: 19.19px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .highlight-selected:hover {
